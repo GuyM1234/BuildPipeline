@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/', methods=["POST"])
 def build():
     response = build_pipeline(request.form.to_dict())
-    return jsonify()
+    return jsonify(response)
 
 
 if __name__ == '__main__':
