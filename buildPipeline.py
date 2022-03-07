@@ -2,37 +2,24 @@ def build_kafka(config: dict):
     pass
 
 
-def write(config):
+def write_to_db(config):
     mongo.write()
 
 
-producers = {
-    'kafka': buildkakfa
+producers_setups = {
+    'kafka': setup_kafka
 }
 
-consumers = {
-    'hive': buildkakfa
+consumers_setups = {
+    'hive': setup_hive
 }
 
 
-def build(config: dict):
-    producers[config['producer']['name']](config['producer']['config'])
-    consumers[config['consumer']['name']](config['consumer']['config'])
+def build_pipeline(config: dict):
     write(config)
+    consumers_setup = producers[config['producer']['name']]
+    consumers_setup(config['consumer']['config'])
+    producers_setup = producers[config['producer']['name']]
+    producer_settings = producers_setup(producer['config'])
+    return producer_settings
 
-
-config = {
-    producer: {
-        name: "kafka",
-        config: {
-            topic:
-            part: 1
-        }
-    },
-    consumer: [{
-        name: 'hive',
-        tables: [{
-
-        }]
-    }]
-}
