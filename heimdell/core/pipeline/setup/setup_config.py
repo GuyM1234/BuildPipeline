@@ -1,4 +1,4 @@
-from heimdell.core.utils.exceptions import ProducerNotSupported, ConsumerNotSupported
+from heimdell.core.utils.exceptions import ProducerNotSupported, ConsumerNotSupported, KeyMissing
 
 keys = ['sagah', 'username', 'producer', 'consumers', 'validations']
 producer_names = ['kafka']
@@ -29,3 +29,11 @@ def enrich(config: dict):
 
 def is_key_exists(key: str, config: dict):
     return config.get(key) is not None
+
+
+def setup_config(config):
+    missing_keys = get_missing_keys(config)
+    if len(missing_keys) > 0:
+        raise KeyMissing()
+    validate_values(config)
+    return enrich(config)

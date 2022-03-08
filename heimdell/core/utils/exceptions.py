@@ -4,3 +4,7 @@ class ProducerNotSupported(Exception):
 
 class ConsumerNotSupported(Exception):
     pass
+
+
+class KeyMissing(Exception):
+    pass
