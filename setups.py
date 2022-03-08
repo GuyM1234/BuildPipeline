@@ -1,5 +1,6 @@
-# from kafka.admin import KafkaAdminClient, NewTopic
+from kafka.admin import KafkaAdminClient, NewTopic
 import pymongo.database
+
 from pymongo.collection import Collection
 from setup_configs import KAFKA_HOST, MONGO
 from pymongo import MongoClient
@@ -8,10 +9,10 @@ from pymongo import MongoClient
 def kafka(config: dict):
     admin_client = KafkaAdminClient(
         bootstrap_servers=KAFKA_HOST,
-        client_id=config.client_id
+        client_id=config['client_id']
     )
-    admin_client.create_topics([NewTopic(name=config.topic_name, num_partitions=config.num_partitions,
-                                         replication_factor=config.replication_factor)])
+    admin_client.create_topics([NewTopic(name=config['topic_name'], num_partitions=config['num_partitions'],
+                                         replication_factor=config['replication_factor'])])
 
 
 def hive(config: dict):
@@ -44,7 +45,7 @@ configg = {
     'producer': {
         'name': "kafka",
         'config': {
-            'topic': 'sagah',
+            'topic_name': 'sagah',
             'num_partitions': 1,
             'replication_factor': 1,
             'client_id': '123pijhsdfl;jakN'
@@ -64,4 +65,4 @@ configg = {
         'file_type': 'json'
     }
 }
-Mongo.write_config(configg)
+kafka(configg['producer']['config'])
