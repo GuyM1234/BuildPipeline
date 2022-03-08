@@ -1,6 +1,6 @@
 import requests
 MINIMAL_CONFIG = {
-    # 'sagah': '',
+    'sagah': '',
     'username': '',
     'producer': {
         'name': 'd',
@@ -17,7 +17,7 @@ MINIMAL_CONFIG = {
 }
 print(MINIMAL_CONFIG)
 x = requests.post("http://localhost:5000/", data=MINIMAL_CONFIG)
-print(x.json())
+print(x.text)
 
 # configg = {
 #     'producer': {

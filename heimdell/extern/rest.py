@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=["POST"])
 def build():
-    config = request.form.to_dict()
+    config = request.form.to_dict()  # data not received well
     try:
         response = run(config)
         return jsonify(response)
@@ -16,7 +16,7 @@ def build():
     except ProducerNotSupported:
         return 'Producer not supported', 403
     except KeyMissing:
-        return 'missing not supported', 403
+        return 'Key missing', 403
 
 
 if __name__ == '__main__':

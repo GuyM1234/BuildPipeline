@@ -1,12 +1,12 @@
 from heimdell.core.utils.exceptions import ProducerNotSupported, ConsumerNotSupported, KeyMissing
 
-keys = ['sagah', 'username', 'producer', 'consumers', 'validations']
+must_keys = ['sagah', 'username', 'producer', 'consumers', 'validations']
 producer_names = ['kafka']
 consumer_names = ['hive', 'elastic', 'oracle']
 
 
 def get_missing_keys(config):
-    missing_keys = [key for key in keys if not is_key_exists(key, config)]
+    missing_keys = [key for key in must_keys if not is_key_exists(key, config)]
     if 'producer' not in missing_keys and not is_key_exists('name', config['producer']):
         missing_keys.append('producer/name')
     if 'consumers' not in missing_keys and \
@@ -23,8 +23,9 @@ def validate_values(config: dict):
             raise ConsumerNotSupported()
 
 
+# Not implemented yet
 def enrich(config: dict):
-    pass
+    return config
 
 
 def is_key_exists(key: str, config: dict):
