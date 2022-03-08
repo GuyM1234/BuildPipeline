@@ -17,5 +17,5 @@ def setup(config: dict):
     for consumer_type, consumer_config in config['consumers'].items():
         consumers_setup = consumers_setups[consumer_type]
         consumers_setup(consumer_config)
-    Mongo.write(config)
+    config = Mongo.write(config)
     return config
