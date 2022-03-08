@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from buildPipeline import build_pipeline
+from api.buildPipeline import build_pipeline
+
 app = Flask(__name__)
 
 

@@ -2,7 +2,7 @@ from kafka.admin import KafkaAdminClient, NewTopic
 import pymongo.database
 
 from pymongo.collection import Collection
-from setup_configs import KAFKA_HOST, MONGO
+from configuration import KAFKA_HOST, MONGO
 from pymongo import MongoClient
 
 
@@ -39,30 +39,3 @@ class Mongo:
         except StopIteration:
             pass
         return config
-
-
-configg = {
-    'producer': {
-        'name': "kafka",
-        'config': {
-            'topic_name': 'sagah',
-            'num_partitions': 1,
-            'replication_factor': 1,
-            'client_id': '123pijhsdfl;jakN'
-        }
-    },
-    'consumers': {
-        'hive': {
-            'path': '/usr/home/ma29',
-            'table': 'random',
-        },
-    },
-    'validations': {
-        'scheme': {
-            'id': 'string',
-            'age': 'int',
-        },
-        'file_type': 'json'
-    }
-}
-kafka(configg['producer']['config'])
