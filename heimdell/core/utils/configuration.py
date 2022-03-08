@@ -5,3 +5,4 @@ MONGO = {
     'db_name': 'pipelines',
     'collection_name': 'pipelines',
 }
+producer = 'producer'

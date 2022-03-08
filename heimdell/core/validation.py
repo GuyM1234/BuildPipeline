@@ -1,4 +1,4 @@
-from exceptions import ProducerNotSupported, ConsumerNotSupported
+from heimdell.core.utils.exceptions import ProducerNotSupported, ConsumerNotSupported
 
 keys = ['sagah', 'username', 'producer', 'consumers', 'validations']
 producer_names = ['kafka']
@@ -21,7 +21,11 @@ def validate_values(config: dict):
     for consumer_name in config['consumers'].keys():
         if consumer_name not in consumer_names:
             raise ConsumerNotSupported()
-    
+
+
+def enrich(config: dict):
+    pass
+
 
 def is_key_exists(key: str, config: dict):
-    return configg[key] is not None
+    return config.get(key) is not None

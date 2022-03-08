@@ -1,9 +1,6 @@
 from kafka.admin import KafkaAdminClient, NewTopic
-import pymongo.database
-
-from pymongo.collection import Collection
-from configuration import KAFKA_HOST, MONGO
 from pymongo import MongoClient
+from heimdell.core.utils.configuration import KAFKA_HOST, MONGO
 
 
 def kafka(config: dict):
@@ -21,7 +18,7 @@ def hive(config: dict):
 
 class Mongo:
     @staticmethod
-    def write_config(config: dict):
+    def write(config: dict):
         client = MongoClient(MONGO['host'], MONGO['port'])
         db = client.get_database(MONGO['db_name'])
         collection = db.get_collection(MONGO['collection_name'])
